@@ -18,15 +18,8 @@ Widgets is a Utility plugin which shows widgets on the player's screen, this all
 ⭐ Customizable commands when closing the menu or on the items inside the menu once clicked
 
 ## API
-[![](https://jitpack.io/v/TheLividaProject/mc-widgets-plugin.svg)](https://jitpack.io/#TheLividaProject/mc-widgets-plugin)
 ```
-repositories {
-    maven { url 'https://jitpack.io' }
-}
-
-dependencies {
-    implementation('com.github.TheLividaProject:mc-widgets-plugin:TAG')
-}
+Coming Soon
 ```
 
 Make sure you replace TAG with the lastest tag
