@@ -1,0 +1,82 @@
+# MiniMessage format is supported - https://docs.advntr.dev/minimessage/format.html.
+
+unicodes:
+  shift-1013: ""
+  shift-1536: ""
+  background: ""
+  main-screen: ""
+
+options:
+  enabled: true # Enables the widget to be displayed
+  delay: 1 # The delay (in ticks: 20 ticks per second) for the widget to be displayed after joining.
+  background:
+    colour: "<#000000>" # Background colour of the widget
+    delay: false # Display the background texture while the delay is active.
+  fade:
+    enabled: true # Fade the widget with your background texture when advancing.
+    time: 10 # The duration (in ticks: 20 ticks per second) for the fade.
+
+# Play a sound when the player advances from the widget. [supports custom sound]
+sound-on-advance:
+  enable: true
+  sound: ENTITY_CHICKEN_EGG
+  volume: 0.5
+  pitch: 1
+
+# Execute commands from the player or console, or send a message.
+# Valid prefixes: [player], [console], [message]
+# To remove, comment this out
+commands-on-advance:
+  - "[console] give %player% cobblestone 1"
+  - "[message] You're an official member of being a cobble monster!"
+  - "[player] balance"
+
+# To remove, comment this out
+welcome-message-on-advance:
+  - " "
+  - "<#09add3>Welcome to this amazing server!"
+  - "<#ACB5BF>Plugin made by TheLividaProject!"
+  - " "
+
+# To remove this, comment this out
+menu:
+  mxs-smp: # The item ID
+    material: "SHIELD"
+    name: "<#09add3>MxS SMP Server"
+    custom-model: 0 # Set a custom model
+    slot: 22 # Valid slot values: 0-89 and 54-89 are the player's inventory.
+    hide-flags: true # If true, lines in the lore such as "Damage: 4" will be hidden.
+    close-on-click: true # If true, the widget will close when the player clicks this item.
+    # Execute commands from the player or console, or send a message.
+    # Valid prefixes: [player], [console], [message]
+    # Here you can remove the commands section if you don't want to execute commands.
+    commands:
+      - "[console] transfer play.monsterxsquad.com 25565 %player%"
+    lore:
+      - ""
+      - "<#FFFF55>Click to join server!"
+      - ""
+  discord:
+    material: "NETHER_STAR"
+    name: "<#FFAA00>Join the Discord!"
+    custom-model: 0
+    slot: 66
+    close-on-click: true
+    commands:
+      - "[message] <#55FF55><click:open_url:https://discord.com/invite/amFaudjFME>Join TheLividaProject's Discord!"
+    lore:
+      - ""
+      - "<#FFFF55>Click to join discord!"
+      - ""
+  twitch:
+    material: "DIAMOND"
+    name: '<#55FFFF>Check out my Twitch!'
+    custom-model: 0
+    slot: 68
+    close-on-click: true
+    commands:
+      - "[message] <#55FF55><click:open_url:https://twitch.tv/TheLividaProject>Follow TheLividaProject's Twitch!"
+    lore:
+      - ""
+      - "<#FFFF55>Click to follow TheLividaProject's Twitch!"
+      - ""

@@ -1,0 +1,19 @@
+main: com.monsterxsquad.widgets.Widgets
+name: Widgets
+version: '1.0.0'
+api-version: 1.21
+
+prefix: widgets
+
+authors: [TheLividaProject]
+description: A unique utility plugin.
+
+website: https://monsterxsquad.com/
+
+depend:
+  - PlaceholderAPI
+
+commands:
+  widgets:
+    aliases: widget
+    usage: /widgets

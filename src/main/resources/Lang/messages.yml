@@ -1,0 +1,30 @@
+# All messages support MiniMessage - https://docs.advntr.dev/minimessage/format.html
+
+prefix: "<#55FFFF><bold>Widgets > "
+
+resource-pack:
+  kick-on-decline:
+    - '<#FF5555>You must download the server resource pack to play!'
+  no-pack-loaded: '<#AAAAAA>Server resource pack not detected-skipping welcome screen.'
+
+commands:
+  no-permission: '<#FF5555>You do not have permission to use this command!'
+  fade:
+    usage: "<#FF5555>Usage: /widgets fade <player> <widget> <in> <stay> <out>"
+    invalid-player: "<#FF5555>That player is not online!"
+    invalid-widget: "<#FF5555>Invalid widget name"
+    invalid-numbers-amount: "<#FF5555>You need to provide at least 3 numbers."
+    invalid-numbers: "<#FF5555>Only numbers can be used for time values!"
+  show:
+    usage: "<#FF5555>Usage: /widgets show <player> <widget>"
+    invalid-player: "<#FF5555>That player is not online!"
+    invalid-widget: "<#FF5555>Invalid widget name"
+    showing: "<#FF5555>Displaying widget to <papi:player_name>"
+  reload:
+    config-reloaded: '<#AAAAAA>Configuration reloaded.'
+  help:
+    usage:
+      - "<#55FF55>Usages:"
+      - "<#FFFF55>/widgets fade <player> <widget> <in> <stay> <out> <#AAAAAA>- Displays a fade."
+      - "<#FFFF55>/widgets show <player> <widget> <#AAAAAA>- Force displays the widget menu."
+      - "<#FFFF55>/widgets reload <#AAAAAA>- Reloads all of the configs."

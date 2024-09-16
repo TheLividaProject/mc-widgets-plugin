@@ -1,0 +1,37 @@
+# -------------------------------------------------- #
+#
+# Widgets 1.0.0 - Made by TheLividaProject
+# Inspired by Jeqo
+#
+# Discord: https://discord.gg/amFaudjFME
+#
+# -------------------------------------------------- #
+
+debug-mode: false
+
+widgets-onjoin:
+  enabled: true # If false the onJoin for widgets will not be displayed
+  widgets:
+    welcome: # Widget Name
+      enabled: true # Enables the widget to be displayed on join
+      priority: 1 # Highest Number takes priority
+#      permission: "widgets.welcome" # Check if the player has the permission
+      first-join: true # If the player is new to the server it'll display the widget
+      once-per-restart: false # Widget will only display to the player once, every restart
+
+# Give the player invulnerability when loading the pack.
+# Recommended if you don't have a plugin that keeps your players safe whilst loading the pack.
+player-invulnerable-during-load: true
+blindness-during-prompt: true # Give players blindness when they have the pack prompt.
+
+kick-on-decline: false # Kick the player if they don't accept the pack.
+
+hide-join-messages: false # If true, player join messages will be hidden.
+hide-quit-messages: false # If true, player quit messages will be hidden.
+
+# Play a sound when the player's pack finishes loading. [supports custom sound]
+sound-on-pack-load:
+  enable: true
+  sound: ENTITY_PLAYER_LEVELUP
+  volume: 0.5
+  pitch: 1
