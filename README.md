@@ -22,7 +22,5 @@ Widgets is a Utility plugin which shows widgets on the player's screen, this all
 Coming Soon
 ```
 
-Make sure you replace TAG with the lastest tag
-
 ## License
 Widgets is licensed under the [AGPL - 3.0 license](https://github.com/TheLividaProject/mc-widgets-plugin/blob/main/LICENSE)
