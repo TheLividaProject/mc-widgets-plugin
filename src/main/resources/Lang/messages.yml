@@ -7,6 +7,9 @@ resource-pack:
     - '<#FF5555>You must download the server resource pack to play!'
   no-pack-loaded: '<#AAAAAA>Server resource pack not detected-skipping welcome screen.'
 
+widgets:
+  disabled: "<#FF5555>This widget has been disabled!"
+
 commands:
   no-permission: '<#FF5555>You do not have permission to use this command!'
   fade:

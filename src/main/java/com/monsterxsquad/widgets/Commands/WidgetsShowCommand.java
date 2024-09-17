@@ -49,6 +49,11 @@ public class WidgetsShowCommand implements SubCommands {
             return;
         }
 
+        if (!widgetFile.getBoolean("options.enabled")) {
+            sender.sendMessage(colourUtils.miniFormat(plugin.getConfigManager().getLang().getString("widgets.disabled")));
+            return;
+        }
+
         PlayerWidgetData playerWidgetData = new PlayerWidgetData(widgetName);
         plugin.getWidgetsManager().getWidgetsDataCache().put(target.getUniqueId(), playerWidgetData);
 

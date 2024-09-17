@@ -3,6 +3,7 @@ package com.monsterxsquad.widgets.Managers.Widgets;
 import com.monsterxsquad.widgets.Events.PlayerWidgetDisplayEvent;
 import com.monsterxsquad.widgets.Events.PlayerWidgetProcessedEvent;
 import com.monsterxsquad.widgets.GUI.WidgetMenu;
+import com.monsterxsquad.widgets.Utils.ColourUtils;
 import com.monsterxsquad.widgets.Widgets;
 import com.monsterxsquad.widgets.Utils.ItemUtils;
 import org.bukkit.Bukkit;
@@ -23,6 +24,7 @@ public class WidgetsManager {
     private final HashSet<UUID> processingPlayers = new HashSet<>();
 
     private final ItemUtils itemUtils = new ItemUtils();
+    private final ColourUtils colourUtils = new ColourUtils();
 
     public WidgetsManager(Widgets plugin) {
         this.plugin = plugin;
@@ -31,7 +33,11 @@ public class WidgetsManager {
     public void displayWidget(Player player) {
         PlayerWidgetData playerWidgetData = widgetsDataCache.get(player.getUniqueId());
 
-        if (!plugin.getConfigManager().getWidgets().get(playerWidgetData.getId()).getBoolean("options.enabled")) return;
+        if (!plugin.getConfigManager().getWidgets().get(playerWidgetData.getId()).getBoolean("options.enabled")) {
+            player.sendMessage(colourUtils.miniFormat(plugin.getConfigManager().getLang().getString("widgets.disabled")));
+            widgetsDataCache.remove(player.getUniqueId());
+            return;
+        }
 
         playersActiveWidgets.add(player.getUniqueId());
         playerWidgetData.setInventory(itemUtils.itemStackArrayToBase64(player.getInventory().getContents()));
