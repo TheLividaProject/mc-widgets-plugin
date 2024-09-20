@@ -1,5 +1,6 @@
 package com.monsterxsquad.widgets.Managers.Commands;
 
+import com.monsterxsquad.widgets.Utils.ColourUtils;
 import com.monsterxsquad.widgets.Widgets;
 import com.monsterxsquad.widgets.Commands.WidgetsFadeCommand;
 import com.monsterxsquad.widgets.Commands.WidgetsHelpCommand;
@@ -10,6 +11,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -22,9 +24,15 @@ public class WidgetsCommandManager implements CommandExecutor, TabCompleter {
 
     //TODO move to brig
 
+    private final Widgets plugin;
+
     private final ArrayList<SubCommands> commands = new ArrayList<>();
 
+    private final ColourUtils colourUtils = new ColourUtils();
+
     public WidgetsCommandManager(Widgets plugin) {
+        this.plugin = plugin;
+
         plugin.getCommand("widgets").setExecutor(this);
         plugin.getCommand("widgets").setTabCompleter(this);
 
@@ -44,6 +52,13 @@ public class WidgetsCommandManager implements CommandExecutor, TabCompleter {
 
         SubCommands command = getCommand(args[0]);
         if (command == null) return true;
+
+        if (sender instanceof Player player) {
+            if (!player.hasPermission(command.permission())) {
+                player.sendMessage(colourUtils.miniFormat(plugin.getConfigManager().getLang().getString("prefix") + plugin.getConfigManager().getLang().getString("commands.no-permission")));
+                return true;
+            }
+        }
 
         String[] newArgs = Arrays.copyOfRange(args, 1, args.length);
         command.onCommand(sender, newArgs);

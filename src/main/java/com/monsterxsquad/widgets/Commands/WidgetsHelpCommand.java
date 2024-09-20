@@ -20,13 +20,6 @@ public class WidgetsHelpCommand implements SubCommands {
 
     @Override
     public void onCommand(CommandSender sender, String[] args) {
-        if (sender instanceof Player player) {
-            if (!player.hasPermission("widgets.help")) {
-                player.sendMessage(colourUtils.miniFormat(plugin.getConfigManager().getLang().getString("prefix") + plugin.getConfigManager().getLang().getString("commands.no-permission")));
-                return;
-            }
-        }
-
         plugin.getConfigManager().getLang().getStringList("commands.help.usage").forEach(string -> {
             sender.sendMessage(colourUtils.miniFormat(string));
         });
@@ -35,6 +28,11 @@ public class WidgetsHelpCommand implements SubCommands {
     @Override
     public String name() {
         return "help";
+    }
+
+    @Override
+    public String permission() {
+        return "widgets.commands.help";
     }
 
     @Override

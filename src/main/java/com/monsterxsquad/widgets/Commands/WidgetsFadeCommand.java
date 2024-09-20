@@ -24,13 +24,6 @@ public class WidgetsFadeCommand implements SubCommands {
 
     @Override
     public void onCommand(CommandSender sender, String[] args) {
-        if (sender instanceof Player player) {
-            if (!player.hasPermission("widgets.fade")) {
-                player.sendMessage(colourUtils.miniFormat(plugin.getConfigManager().getLang().getString("prefix") + plugin.getConfigManager().getLang().getString("commands.no-permission")));
-                return;
-            }
-        }
-
         if (args.length <= 1) {
             sender.sendMessage(colourUtils.miniFormat(plugin.getConfigManager().getLang().getString("prefix") + plugin.getConfigManager().getLang().getString("commands.fade.usage")));
             return;
@@ -67,6 +60,11 @@ public class WidgetsFadeCommand implements SubCommands {
     @Override
     public String name() {
         return "fade";
+    }
+
+    @Override
+    public String permission() {
+        return "widgets.commands.fade";
     }
 
     @Override

@@ -21,13 +21,6 @@ public class WidgetsReloadCommand implements SubCommands {
 
     @Override
     public void onCommand(CommandSender sender, String[] args) {
-        if (sender instanceof Player player) {
-            if (!player.hasPermission("widgets.reload")) {
-                player.sendMessage(colourUtils.miniFormat(plugin.getConfigManager().getLang().getString("prefix") + plugin.getConfigManager().getLang().getString("commands.no-permission")));
-                return;
-            }
-        }
-
         Bukkit.getAsyncScheduler().runNow(plugin, task -> {
             plugin.getConfigManager().load();
         });
@@ -35,10 +28,14 @@ public class WidgetsReloadCommand implements SubCommands {
         sender.sendMessage(colourUtils.miniFormat(plugin.getConfigManager().getLang().getString("prefix") + plugin.getConfigManager().getLang().getString("commands.reload.config-reloaded")));
     }
 
-
     @Override
     public String name() {
         return "reload";
+    }
+
+    @Override
+    public String permission() {
+        return "widgets.commands.reload";
     }
 
     @Override
