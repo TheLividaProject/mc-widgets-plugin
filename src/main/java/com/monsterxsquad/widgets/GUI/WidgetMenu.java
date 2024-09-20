@@ -47,7 +47,7 @@ public class WidgetMenu implements MenuInventoryHolder {
         this.itemDataKey = new NamespacedKey(plugin, "ItemData");
         this.player = player;
 
-        this.inventory = Bukkit.createInventory(this, getSize(), getName());
+        this.inventory = Bukkit.createInventory(this, getSize(), colourUtils.miniFormat(getName()));
 
         PlayerWidgetData playerWidgetData = plugin.getWidgetsManager().getWidgetsDataCache().get(player.getUniqueId());
 
