@@ -33,7 +33,7 @@ public class ResourcePackManager {
                 ConfigurationSection packInfoConfig = plugin.getConfigManager().getConfig().getConfigurationSection("resource-pack.downloads." + key);
 
                 try {
-                    if (packInfoConfig.getBoolean("enabled-onjoin")) enabledResourcePackList.add(key);
+                    if (packInfoConfig.getBoolean("download-onjoin")) enabledResourcePackList.add(key);
 
                     ResourcePackInfo resourcePackInfo = ResourcePackInfo.resourcePackInfo()
                             .id(UUID.fromString(key))
