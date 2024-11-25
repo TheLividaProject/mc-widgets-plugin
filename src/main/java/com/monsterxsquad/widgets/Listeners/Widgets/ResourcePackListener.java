@@ -10,6 +10,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerResourcePackStatusEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -28,6 +29,13 @@ public class ResourcePackListener implements Listener {
 
     public ResourcePackListener(Widgets plugin) {
         this.plugin = plugin;
+    }
+
+    @EventHandler
+    public void loadPacks(PlayerJoinEvent event) {
+        if (!plugin.getConfigManager().getConfig().getBoolean("resource-packs.enabled")) return;
+        Player player = event.getPlayer();
+        plugin.getResourcePackManager().load(player);
     }
 
     @EventHandler

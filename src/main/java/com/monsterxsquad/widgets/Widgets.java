@@ -8,6 +8,7 @@ import com.monsterxsquad.widgets.Managers.Commands.WidgetsCommandManager;
 import com.monsterxsquad.widgets.Managers.GUI.GUIManager;
 import com.monsterxsquad.widgets.Listeners.GUI.GUIClickListener;
 import com.monsterxsquad.widgets.Managers.ConfigManager;
+import com.monsterxsquad.widgets.Managers.ResourcePack.ResourcePackManager;
 import com.monsterxsquad.widgets.Managers.Widgets.WidgetsManager;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -17,6 +18,8 @@ public class Widgets extends JavaPlugin {
     private ConfigManager configManager;
     private WidgetsManager widgetsManager;
     private GUIManager GUIManager;
+
+    private ResourcePackManager resourcePackManager;
 
     @Override
     public void onEnable() {
@@ -35,6 +38,8 @@ public class Widgets extends JavaPlugin {
         configManager = new ConfigManager(this);
         widgetsManager = new WidgetsManager(this);
         GUIManager = new GUIManager();
+
+        resourcePackManager = new ResourcePackManager(this);
     }
 
     private void loadCommands() {
@@ -60,5 +65,9 @@ public class Widgets extends JavaPlugin {
 
     public GUIManager getGUIManager() {
         return GUIManager;
+    }
+
+    public ResourcePackManager getResourcePackManager() {
+        return resourcePackManager;
     }
 }

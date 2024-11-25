@@ -9,6 +9,13 @@
 
 debug-mode: false
 
+resource-packs:
+  enabled: false
+  downloads:
+    13d59e2c-9d81-43da-a13a-6b5ecac81785: # Random UUID - https://www.uuidgenerator.net
+      link: "<link>" # link to resource pack to download e.g like dropbox
+      download-onjoin: true
+
 widgets-onjoin:
   enabled: true # If false the onJoin for widgets will not be displayed
   widgets:

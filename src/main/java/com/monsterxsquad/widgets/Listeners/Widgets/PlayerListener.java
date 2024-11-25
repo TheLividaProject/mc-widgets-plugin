@@ -31,6 +31,10 @@ public class PlayerListener implements Listener {
         if (plugin.getConfigManager().getConfig().getBoolean("blindness-during-prompt")) {
             player.addPotionEffect(PotionEffectType.BLINDNESS.createEffect(999999, 1));
         }
+
+        if (plugin.getConfigManager().getConfig().getBoolean("hide-join-messages")) {
+            event.joinMessage(null);
+        }
     }
 
     @EventHandler
@@ -51,6 +55,10 @@ public class PlayerListener implements Listener {
             plugin.getWidgetsManager().getPlayersActiveWidgets().remove(player.getUniqueId());
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }
+
+        if (plugin.getConfigManager().getConfig().getBoolean("hide-quit-messages")) {
+            event.quitMessage(null);
         }
     }
 
