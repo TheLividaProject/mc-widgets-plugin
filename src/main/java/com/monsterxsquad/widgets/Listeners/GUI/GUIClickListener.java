@@ -23,7 +23,7 @@ public class GUIClickListener implements Listener {
 
         Player player = (Player) event.getWhoClicked();
 
-        MenuInventoryHolder menuInventoryHolder = plugin.getGUIManager().getOpenGUI(player);
+        MenuInventoryHolder menuInventoryHolder = plugin.getGUIManager().getPlayerGUICache().get(player.getUniqueId());
         if (menuInventoryHolder == null) return;
         if (menuInventoryHolder.cancelEvent()) event.setCancelled(true);
 
@@ -37,11 +37,11 @@ public class GUIClickListener implements Listener {
 
         Player player = (Player) event.getPlayer();
 
-        MenuInventoryHolder menuInventoryHolder = plugin.getGUIManager().getOpenGUI(player);
+        MenuInventoryHolder menuInventoryHolder = plugin.getGUIManager().getPlayerGUICache().get(player.getUniqueId());
 
         if (menuInventoryHolder == null) return;
 
         menuInventoryHolder.handleClose(player, event);
-        plugin.getGUIManager().getPlayerGUICache().remove(player);
+        plugin.getGUIManager().getPlayerGUICache().remove(player.getUniqueId());
     }
 }

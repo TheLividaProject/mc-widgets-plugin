@@ -16,6 +16,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Widgets extends JavaPlugin {
 
     private ConfigManager configManager;
+
     private WidgetsManager widgetsManager;
     private GUIManager GUIManager;
 
@@ -31,11 +32,12 @@ public class Widgets extends JavaPlugin {
 
     @Override
     public void onDisable() {
-
+        widgetsManager.giveAllItemsBack();
     }
 
     private void loadManagers() {
         configManager = new ConfigManager(this);
+
         widgetsManager = new WidgetsManager(this);
         GUIManager = new GUIManager();
 

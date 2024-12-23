@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.monsterxsquad'
-version '1.0.2'
+version '1.0.3'
 
 compileJava.options.encoding = 'UTF-8'
 
@@ -25,7 +25,10 @@ repositories {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.21.3-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT")
+
+    implementation("com.zaxxer:HikariCP:5.0.1")
+
     compileOnly('me.clip:placeholderapi:2.11.3')
 }
 

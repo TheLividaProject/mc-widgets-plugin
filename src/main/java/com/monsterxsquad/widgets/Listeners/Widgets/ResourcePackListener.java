@@ -3,6 +3,7 @@ package com.monsterxsquad.widgets.Listeners.Widgets;
 import com.monsterxsquad.widgets.Managers.Widgets.PlayerPotionData;
 import com.monsterxsquad.widgets.Managers.Widgets.PlayerWidgetData;
 import com.monsterxsquad.widgets.Utils.ColourUtils;
+import com.monsterxsquad.widgets.Utils.SoundUtils;
 import com.monsterxsquad.widgets.Widgets;
 import net.kyori.adventure.title.Title;
 import org.bukkit.Sound;
@@ -25,6 +26,7 @@ public class ResourcePackListener implements Listener {
 
     private final HashSet<UUID> playerTracker = new HashSet<>();
 
+    private final SoundUtils soundUtils = new SoundUtils();
     private final ColourUtils colourUtils = new ColourUtils();
 
     public ResourcePackListener(Widgets plugin) {
@@ -88,12 +90,7 @@ public class ResourcePackListener implements Listener {
                         float soundVolume = Float.parseFloat(plugin.getConfigManager().getConfig().getString("sound-on-pack-load.volume"));
                         float soundPitch = Float.parseFloat(plugin.getConfigManager().getConfig().getString("sound-on-pack-load.pitch"));
 
-                        try {
-                            Sound sound = Sound.valueOf(soundID.toUpperCase());
-                            player.playSound(player.getLocation(), sound, soundVolume, soundPitch);
-                        } catch (IllegalArgumentException err) {
-                            player.playSound(player.getLocation(), soundID, soundVolume, soundPitch);
-                        }
+                        soundUtils.sendSoundToPlayer(player, soundID, soundVolume, soundPitch);
                     }
                 } catch (NullPointerException err) {
                     plugin.getLogger().warning("sound-on-pack-load (config.yml) is not configured correctly.");

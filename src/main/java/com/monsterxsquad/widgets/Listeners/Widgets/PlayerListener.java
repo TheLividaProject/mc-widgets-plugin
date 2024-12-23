@@ -28,12 +28,12 @@ public class PlayerListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        if (plugin.getConfigManager().getConfig().getBoolean("blindness-during-prompt")) {
-            player.addPotionEffect(PotionEffectType.BLINDNESS.createEffect(999999, 1));
-        }
-
         if (plugin.getConfigManager().getConfig().getBoolean("hide-join-messages")) {
             event.joinMessage(null);
+        }
+
+        if (plugin.getConfigManager().getConfig().getBoolean("blindness-during-prompt")) {
+            player.addPotionEffect(PotionEffectType.BLINDNESS.createEffect(999999, 1));
         }
     }
 
@@ -47,6 +47,10 @@ public class PlayerListener implements Listener {
     public void onQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
 
+        if (plugin.getConfigManager().getConfig().getBoolean("hide-quit-messages")) {
+            event.quitMessage(null);
+        }
+
         PlayerWidgetData playerWidgetData = plugin.getWidgetsManager().getWidgetsDataCache().get(player.getUniqueId());
         if (playerWidgetData == null) return;
 
@@ -55,10 +59,6 @@ public class PlayerListener implements Listener {
             plugin.getWidgetsManager().getPlayersActiveWidgets().remove(player.getUniqueId());
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
-
-        if (plugin.getConfigManager().getConfig().getBoolean("hide-quit-messages")) {
-            event.quitMessage(null);
         }
     }
 

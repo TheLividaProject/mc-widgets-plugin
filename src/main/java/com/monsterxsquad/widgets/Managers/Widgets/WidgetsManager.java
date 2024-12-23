@@ -9,6 +9,7 @@ import com.monsterxsquad.widgets.Utils.ItemUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.UUID;
@@ -46,6 +47,18 @@ public class WidgetsManager {
         plugin.getGUIManager().setGUI(player, new WidgetMenu(plugin, player));
 
         Bukkit.getServer().getPluginManager().callEvent(new PlayerWidgetDisplayEvent(player, playerWidgetData.getId(), plugin.getConfigManager().getWidgets().get(playerWidgetData.getId())));
+    }
+
+    public void giveAllItemsBack() {
+        for (Player player :  Bukkit.getOnlinePlayers()) {
+            PlayerWidgetData playerWidgetData = widgetsDataCache.get(player.getUniqueId());
+
+            try {
+                player.getInventory().setContents(itemUtils.itemStackArrayFromBase64(playerWidgetData.getInventory()));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     public String shift1013(Player player) {
