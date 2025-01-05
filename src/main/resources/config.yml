@@ -39,6 +39,7 @@ hide-quit-messages: false # If true, player quit messages will be hidden.
 # Play a sound when the player's pack finishes loading. [supports custom sound]
 sound-on-pack-load:
   enable: true
-  sound: ENTITY_PLAYER_LEVELUP
+  sound: "minecraft:entity.player.levelup"
+  source: "MASTER"
   volume: 0.5
   pitch: 1

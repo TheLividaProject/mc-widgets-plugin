@@ -50,13 +50,14 @@ public class WidgetsManager {
     }
 
     public void giveAllItemsBack() {
-        for (Player player :  Bukkit.getOnlinePlayers()) {
+        for (Player player : Bukkit.getOnlinePlayers()) {
             PlayerWidgetData playerWidgetData = widgetsDataCache.get(player.getUniqueId());
+            if (playerWidgetData == null) continue;
 
             try {
                 player.getInventory().setContents(itemUtils.itemStackArrayFromBase64(playerWidgetData.getInventory()));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+            } catch (IOException err) {
+                throw new RuntimeException(err);
             }
         }
     }

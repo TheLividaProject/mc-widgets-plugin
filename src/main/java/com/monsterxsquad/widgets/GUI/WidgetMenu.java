@@ -4,6 +4,7 @@ import com.monsterxsquad.widgets.Events.PlayerWidgetProcessedEvent;
 import com.monsterxsquad.widgets.Managers.Widgets.PlayerWidgetData;
 import com.monsterxsquad.widgets.Utils.ColourUtils;
 import com.monsterxsquad.widgets.Utils.ItemUtils;
+import com.monsterxsquad.widgets.Utils.SoundUtils;
 import com.monsterxsquad.widgets.Widgets;
 import com.monsterxsquad.widgets.Managers.PDCData.ItemData;
 import com.monsterxsquad.widgets.Managers.PDCData.PDC.ItemDataPDC;
@@ -40,6 +41,7 @@ public class WidgetMenu implements MenuInventoryHolder {
     private final Player player;
 
     private final ItemUtils itemUtils = new ItemUtils();
+    private final SoundUtils soundUtils = new SoundUtils();
     private final ColourUtils colourUtils = new ColourUtils();
 
     public WidgetMenu(Widgets plugin, Player player) {
@@ -106,9 +108,7 @@ public class WidgetMenu implements MenuInventoryHolder {
 
     @Override
     public void handleClick(Player player, ItemStack item, InventoryClickEvent event) {
-        ItemMeta meta = item.getItemMeta();
-
-        ItemData itemData = meta.getPersistentDataContainer().get(itemDataKey, new ItemDataPDC());
+        ItemData itemData = item.getPersistentDataContainer().get(itemDataKey, new ItemDataPDC());
         if (itemData == null) return;
 
         PlayerWidgetData playerWidgetData = plugin.getWidgetsManager().getWidgetsDataCache().get(player.getUniqueId());
@@ -151,15 +151,11 @@ public class WidgetMenu implements MenuInventoryHolder {
         try {
             if (plugin.getConfigManager().getWidgets().get(playerWidgetData.getId()).getBoolean("sound-on-advance.enable")) {
                 String soundID = plugin.getConfigManager().getWidgets().get(playerWidgetData.getId()).getString("sound-on-advance.sound");
+                String source = plugin.getConfigManager().getWidgets().get(playerWidgetData.getId()).getString("sound-on-advance.source");
                 float soundVolume = Float.parseFloat(plugin.getConfigManager().getWidgets().get(playerWidgetData.getId()).getString("sound-on-advance.volume"));
                 float soundPitch = Float.parseFloat(plugin.getConfigManager().getWidgets().get(playerWidgetData.getId()).getString("sound-on-advance.pitch"));
 
-                try {
-                    Sound sound = Sound.valueOf(soundID.toUpperCase());
-                    player.playSound(player.getLocation(), sound, soundVolume, soundPitch);
-                } catch (IllegalArgumentException err) {
-                    player.playSound(player.getLocation(), soundID, soundVolume, soundPitch);
-                }
+                soundUtils.sendSoundToPlayer(player, soundID, source, soundVolume, soundPitch);
             }
         } catch (NullPointerException ex) {
             plugin.getLogger().warning("sound-on-advance (" + playerWidgetData.getId() + ") is not configured correctly.");
@@ -206,7 +202,7 @@ public class WidgetMenu implements MenuInventoryHolder {
 
     private void welcomeMessage(Player player) {
         PlayerWidgetData playerWidgetData = plugin.getWidgetsManager().getWidgetsDataCache().get(player.getUniqueId());
-        List<String > welcomeMessage = plugin.getConfigManager().getWidgets().get(playerWidgetData.getId()).getStringList("welcome-message-on-advance");
+        List<String> welcomeMessage = plugin.getConfigManager().getWidgets().get(playerWidgetData.getId()).getStringList("welcome-message-on-advance");
         if (welcomeMessage.isEmpty()) return;
 
         for (String message : welcomeMessage) {

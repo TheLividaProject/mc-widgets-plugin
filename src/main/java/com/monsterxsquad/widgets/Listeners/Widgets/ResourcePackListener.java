@@ -87,10 +87,11 @@ public class ResourcePackListener implements Listener {
                 try {
                     if (plugin.getConfigManager().getConfig().getBoolean("sound-on-pack-load.enable")) {
                         String soundID = plugin.getConfigManager().getConfig().getString("sound-on-pack-load.sound");
+                        String source = plugin.getConfigManager().getConfig().getString("sound-on-pack-load.source");
                         float soundVolume = Float.parseFloat(plugin.getConfigManager().getConfig().getString("sound-on-pack-load.volume"));
                         float soundPitch = Float.parseFloat(plugin.getConfigManager().getConfig().getString("sound-on-pack-load.pitch"));
 
-                        soundUtils.sendSoundToPlayer(player, soundID, soundVolume, soundPitch);
+                        soundUtils.sendSoundToPlayer(player, soundID, source, soundVolume, soundPitch);
                     }
                 } catch (NullPointerException err) {
                     plugin.getLogger().warning("sound-on-pack-load (config.yml) is not configured correctly.");

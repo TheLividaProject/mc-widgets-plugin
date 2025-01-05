@@ -19,7 +19,8 @@ options:
 # Play a sound when the player advances from the widget. [supports custom sound]
 sound-on-advance:
   enable: true
-  sound: ENTITY_CHICKEN_EGG
+  sound: "minecraft:entity.chicken.egg"
+  source: "MASTER"
   volume: 0.5
   pitch: 1
 
@@ -40,9 +41,9 @@ welcome-message-on-advance:
 
 # To remove this, comment this out
 menu:
-  mxs-smp: # The item ID
+  crescent-kingdom: # The item ID
     material: "SHIELD"
-    name: "<#09add3>MxS SMP Server"
+    name: "<bold><#d800fb>C<#c900fb>r<#ba00fb>e<#ab00fc>s<#9c00fc>c<#8d00fc>e<#7e00fc>n<#6f00fd>t<#8d00fc>K<#9c00fc>i<#ab00fc>n<#ba00fb>g<#c900fb>d<#d800fb>o<#e700fb>m"
     custom-model: 0 # Set a custom model
     slot: 22 # Valid slot values: 0-89 and 54-89 are the player's inventory.
     hide-flags: true # If true, lines in the lore such as "Damage: 4" will be hidden.
@@ -51,7 +52,7 @@ menu:
     # Valid prefixes: [player], [console], [message]
     # Here you can remove the commands section if you don't want to execute commands.
     commands:
-      - "[console] transfer play.monsterxsquad.com 25565 %player%"
+      - "[console] transfer crescentkingdom.com 25565 %player%"
     lore:
       - ""
       - "<#FFFF55>Click to join server!"

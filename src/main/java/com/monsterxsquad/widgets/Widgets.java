@@ -10,6 +10,7 @@ import com.monsterxsquad.widgets.Listeners.GUI.GUIClickListener;
 import com.monsterxsquad.widgets.Managers.ConfigManager;
 import com.monsterxsquad.widgets.Managers.ResourcePack.ResourcePackManager;
 import com.monsterxsquad.widgets.Managers.Widgets.WidgetsManager;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -28,6 +29,8 @@ public class Widgets extends JavaPlugin {
         loadListeners();
 
         loadCommands();
+
+        loadBStats();
     }
 
     @Override
@@ -55,6 +58,10 @@ public class Widgets extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new PlayerItemListener(this), this);
 
         Bukkit.getPluginManager().registerEvents(new GUIClickListener(this), this);
+    }
+
+    private void loadBStats() {
+        new Metrics(this, 24365);
     }
 
     public ConfigManager getConfigManager() {

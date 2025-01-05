@@ -29,7 +29,7 @@ public class ResourcePackManager {
 
     public void loadPack() {
         try {
-            plugin.getConfigManager().getConfig().getConfigurationSection("resource-pack.downloads").getKeys(false).forEach(key -> {
+            plugin.getConfigManager().getConfig().getConfigurationSection("resource-packs.downloads").getKeys(false).forEach(key -> {
                 ConfigurationSection packInfoConfig = plugin.getConfigManager().getConfig().getConfigurationSection("resource-pack.downloads." + key);
 
                 try {
