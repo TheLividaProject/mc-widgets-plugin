@@ -30,7 +30,7 @@ public class ResourcePackManager {
     public void loadPack() {
         try {
             plugin.getConfigManager().getConfig().getConfigurationSection("resource-packs.downloads").getKeys(false).forEach(key -> {
-                ConfigurationSection packInfoConfig = plugin.getConfigManager().getConfig().getConfigurationSection("resource-pack.downloads." + key);
+                ConfigurationSection packInfoConfig = plugin.getConfigManager().getConfig().getConfigurationSection("resource-packs.downloads." + key);
 
                 try {
                     if (packInfoConfig.getBoolean("download-onjoin")) enabledResourcePackList.add(key);
